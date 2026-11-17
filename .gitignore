@@ -44,3 +44,6 @@ next-env.d.ts
 !.env.local.example
 
 .vercel
+
+# 30-day used-review list (local dev)
+/.data/

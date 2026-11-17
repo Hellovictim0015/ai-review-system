@@ -9,6 +9,12 @@ export const clinic = {
   doctorName: "Shashi Pareta",
   /** Short form used in headings, e.g. "How was your visit with Dr. Shashi?" */
   doctorShortName: "Shashi",
+  /** How the doctor is named inside the ready-made reviews, per language. */
+  doctorDisplay: {
+    en: "Dr. Shashi",
+    hi: "डॉ. शशि",
+    hinglish: "Dr. Shashi",
+  },
   specialty: "Senior Physiotherapist",
   clinicName: "Dr. Shashi's Physiotherapy & Clinical Fitness",
   city: "Nipania, Indore",
@@ -26,16 +32,8 @@ export const clinic = {
   /** Darker shade of the accent, used for text on light-blue backgrounds. */
   accentDarkColor: "#1E3A8A",
 
-  /** Optional "What did you like?" chips. */
-  tags: [
-    "Doctor listened carefully",
-    "Clear explanation",
-    "Caring staff",
-    "Modern equipment",
-    "Short waiting time",
-    "Clean clinic",
-    "Easy appointment",
-  ],
+  // "What did you like?" chips live in lib/review-types.ts (TAGS), and the
+  // ready-made reviews in data/reviews/*.ts are written against those tag ids.
 };
 
 export type Clinic = typeof clinic;

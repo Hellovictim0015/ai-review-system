@@ -2,7 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { clinic } from "@/config/clinic";
-import { LANGUAGES, type Language, type SuggestResponse } from "@/lib/review-types";
+import {
+  LANGUAGES,
+  TAGS,
+  type Language,
+  type Suggestion,
+  type SuggestResponse,
+  type TagId,
+} from "@/lib/review-types";
 import {
   CheckIcon,
   CopyIcon,
@@ -22,9 +29,9 @@ const CARD =
 export function ReviewCard() {
   const [screen, setScreen] = useState<Screen>("rate");
   const [rating, setRating] = useState(0);
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<TagId[]>([]);
   const [language, setLanguage] = useState<Language>("en");
-  const [reviews, setReviews] = useState<string[]>([]);
+  const [reviews, setReviews] = useState<Suggestion[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [copiedIndex, setCopiedIndex] = useState(-1);
   const [toast, setToast] = useState<{ text: string; fallbackLink: boolean } | null>(null);
@@ -32,6 +39,8 @@ export function ReviewCard() {
   const abortRef = useRef<AbortController | null>(null);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const topRef = useRef<HTMLDivElement>(null);
+  /** Review ids already shown to this patient, so "Regenerate" gives fresh ones. */
+  const seenRef = useRef<string[]>([]);
 
   useEffect(
     () => () => {
@@ -41,7 +50,7 @@ export function ReviewCard() {
     [],
   );
 
-  function toggleTag(tag: string) {
+  function toggleTag(tag: TagId) {
     setTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   }
 
@@ -69,13 +78,17 @@ export function ReviewCard() {
     scrollCardIntoView();
 
     try {
+      // Keep the loading state visible briefly so the switch doesn't flash.
+      const minDelay = new Promise((r) => setTimeout(r, 700));
       const res = await fetch("/api/suggest", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ rating, tags, language }),
+        body: JSON.stringify({ rating, tags, language, exclude: seenRef.current.slice(-150) }),
         signal: controller.signal,
       });
       const data = (await res.json().catch(() => null)) as SuggestResponse | null;
+      await minDelay;
+      if (controller.signal.aborted) return;
 
       if (!res.ok || !data || !("reviews" in data) || data.reviews.length === 0) {
         setErrorMessage(
@@ -86,6 +99,7 @@ export function ReviewCard() {
         setScreen("error");
         return;
       }
+      seenRef.current.push(...data.reviews.map((r) => r.id));
       setReviews(data.reviews);
       setScreen("results");
     } catch (err) {
@@ -108,9 +122,17 @@ export function ReviewCard() {
     toastTimer.current = setTimeout(() => setToast(null), fallbackLink ? 8000 : 3200);
   }
 
-  async function copyAndPost(index: number, text: string) {
-    const copied = await copyText(text);
+  async function copyAndPost(index: number, review: Suggestion) {
+    const copied = await copyText(review.text);
     setCopiedIndex(index);
+
+    // Lock this review for 30 days so no other patient gets the same text.
+    fetch("/api/used", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: review.id }),
+      keepalive: true,
+    }).catch(() => {});
 
     // No "noopener" feature string here: with it, window.open() always returns
     // null and we couldn't tell when a popup blocker stopped the new tab.
@@ -170,14 +192,14 @@ export function ReviewCard() {
                   <span className="text-[13px] font-medium text-muted">(optional)</span>
                 </legend>
                 <div className="flex flex-wrap gap-2">
-                  {clinic.tags.map((tag) => {
-                    const on = tags.includes(tag);
+                  {TAGS.map((tag) => {
+                    const on = tags.includes(tag.id);
                     return (
                       <button
-                        key={tag}
+                        key={tag.id}
                         type="button"
                         aria-pressed={on}
-                        onClick={() => toggleTag(tag)}
+                        onClick={() => toggleTag(tag.id)}
                         className={`flex min-h-11 cursor-pointer items-center gap-1.5 rounded-full border-[1.5px] px-3.5 text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                           on
                             ? "border-accent bg-accent-soft font-bold text-accent-dark"
@@ -185,7 +207,7 @@ export function ReviewCard() {
                         }`}
                       >
                         {on && <CheckIcon size={16} />}
-                        {tag}
+                        {tag.label}
                       </button>
                     );
                   })}
@@ -243,7 +265,7 @@ export function ReviewCard() {
             <div className="flex size-[58px] items-center justify-center rounded-[18px] bg-accent-soft text-accent">
               <SparkleIcon size={28} className="animate-[spin_3s_linear_infinite]" />
             </div>
-            <p className="text-lg font-extrabold">Writing review ideas for you…</p>
+            <p className="text-lg font-extrabold">Picking review ideas for you…</p>
             <p className="text-[13.5px] text-muted">This takes just a few seconds</p>
           </div>
           {[0, 1, 2].map((i) => (
@@ -272,11 +294,11 @@ export function ReviewCard() {
             </p>
           </div>
 
-          {reviews.map((text, i) => {
+          {reviews.map((review, i) => {
             const copied = copiedIndex === i;
             return (
               <article
-                key={`${i}-${text.slice(0, 16)}`}
+                key={review.id}
                 aria-label={`Suggestion ${i + 1}`}
                 className="flex flex-col gap-3 rounded-[20px] border border-line bg-white p-[18px] shadow-card-sm"
               >
@@ -293,11 +315,11 @@ export function ReviewCard() {
                   lang={language === "hi" ? "hi" : "en"}
                   className="text-[15px] leading-relaxed text-ink select-text"
                 >
-                  {text}
+                  {review.text}
                 </p>
                 <button
                   type="button"
-                  onClick={() => copyAndPost(i, text)}
+                  onClick={() => copyAndPost(i, review)}
                   className={`flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] text-[15px] font-extrabold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                     copied
                       ? "border-[1.5px] border-[#9AD3B0] bg-[#EAF7EF] text-[#14532D]"
