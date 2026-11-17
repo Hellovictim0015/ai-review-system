@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Review suggestion website – landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #EEF5FF; font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, sans-serif; color: #0F1B33; display: flex; flex-direction: column">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE6F5">
+<div style="max-width: 1080px; margin: 0 auto; box-sizing: border-box; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 14px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; letter-spacing: 0.5px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Clinic logo"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 1px">
+<div style="font-size: 17px; font-weight: 800">Dr. [Doctor Name]</div>
+<div style="font-size: 12.5px; color: #4B5A70">[Specialty] · [Clinic Name], [City]</div>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; background: {{accentSoft}}; color: {{accentDark}}; border-radius: 999px; padding: 7px 12px; font-size: 13px; font-weight: 700">
+<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.85 5.9 6.45.85-4.75 4.45 1.2 6.4L12 17.3l-5.75 3.1 1.2-6.4L2.7 9.55l6.45-.85z" fill="#F5A623"></path></svg>Reviews on Google</div>
+</div>
+</header>
+
+<main style="flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; box-sizing: border-box; padding: 40px 20px 56px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+
+<section style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px; padding-top: 6px">
+<div style="align-self: flex-start; background: #FFFFFF; border: 1px solid #DCE6F5; color: {{accentDark}}; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"></path></svg>Thank you for visiting the clinic</div>
+<h1 style="margin: 0; font-size: clamp(28px, 4.6vw, 42px); line-height: 1.15; font-weight: 800; letter-spacing: -0.5px">How was your visit with <span style="color: {{accent}}">Dr. [Doctor Name]?</span></h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4B5A70; max-width: 440px">Your feedback helps other patients choose the right care. Rate your visit, pick a suggested review and post it on Google in under 30 seconds.</p>
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 4px">
+<sc-for list="{{steps}}" as="sp" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="width: 32px; height: 32px; border-radius: 10px; background: #FFFFFF; border: 1px solid #DCE6F5; color: {{accentDark}}; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0">{{sp.n}}</div>
+<div style="font-size: 15px; font-weight: 600">{{sp.label}}</div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; background: #FFFFFF; border: 1px solid #DCE6F5; border-radius: 16px; padding: 14px 16px; max-width: 440px; margin-top: 4px">
+<div style="width: 34px; height: 34px; border-radius: 10px; background: {{accentSoft}}; color: {{accentDark}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700">Your privacy matters</div>
+<div style="font-size: 13px; line-height: 1.5; color: #4B5A70">Google reviews are public. Please avoid sharing personal health details, reports or medicine names.</div>
+</div>
+</div>
+</section>
+
+<section style="flex: 1 1 400px; min-width: 0; max-width: 540px; display: flex; flex-direction: column; gap: 16px">
+
+<sc-if value="{{isRate}}" hint-placeholder-val="{{ true }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE6F5; border-radius: 24px; padding: 26px 22px; box-shadow: 0 1px 2px rgba(15,27,51,0.05), 0 18px 40px rgba(37,99,235,0.10); display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center">
+<div style="font-size: 20px; font-weight: 800">How was your visit?</div>
+<div style="display: flex; gap: 2px; margin-top: 8px">
+<sc-for list="{{stars}}" as="star" hint-placeholder-count="5">
+<button aria-label="{{star.label}}" onClick="{{star.pick}}" style="width: 56px; height: 56px; border: none; background: transparent; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transform: {{star.scale}}; transition: transform 0.2s ease">
+<svg width="42" height="42" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.85 5.9 6.45.85-4.75 4.45 1.2 6.4L12 17.3l-5.75 3.1 1.2-6.4L2.7 9.55l6.45-.85z" fill="{{star.fill}}" stroke="{{star.stroke}}" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+</button>
+</sc-for>
+</div>
+<div style="font-size: 14px; font-weight: 700; color: #4B5A70; min-height: 20px">{{ratingLabel}}</div>
+</div>
+
+<sc-if value="{{showTags}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 20px; border-top: 1px solid #E6EDF8; padding-top: 20px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 15px; font-weight: 700">What did you like? <span style="font-weight: 500; color: #4B5A70; font-size: 13px">(optional)</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tagItems}}" as="tag" hint-placeholder-count="5">
+<sc-if value="{{tag.on}}" hint-placeholder-val="{{ false }}">
+<button aria-pressed="true" onClick="{{tag.toggle}}" style="min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid {{accent}}; background: {{accentSoft}}; color: {{accentDark}}; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{tag.label}}</button>
+</sc-if>
+<sc-if value="{{tag.off}}" hint-placeholder-val="{{ true }}">
+<button aria-pressed="false" onClick="{{tag.toggle}}" style="min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid #D5DFEE; background: #F7FAFF; color: #33415A; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{tag.label}}</button>
+</sc-if>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 15px; font-weight: 700">Review language</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; background: #EAF1FC; border-radius: 14px; padding: 4px">
+<sc-for list="{{langs}}" as="lg" hint-placeholder-count="3">
+<sc-if value="{{lg.on}}" hint-placeholder-val="{{ false }}">
+<button aria-pressed="true" onClick="{{lg.pick}}" style="min-height: 44px; border: none; border-radius: 11px; background: #FFFFFF; color: {{accentDark}}; font-family: inherit; font-size: 14px; font-weight: 800; box-shadow: 0 1px 3px rgba(15,27,51,0.12); cursor: pointer">{{lg.label}}</button>
+</sc-if>
+<sc-if value="{{lg.off}}" hint-placeholder-val="{{ true }}">
+<button aria-pressed="false" onClick="{{lg.pick}}" style="min-height: 44px; border: none; border-radius: 11px; background: transparent; color: #44526A; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{lg.label}}</button>
+</sc-if>
+</sc-for>
+</div>
+</div>
+<button onClick="{{generate}}" style="min-height: 56px; border: none; border-radius: 16px; background: {{accent}}; color: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 24px rgba(37,99,235,0.28)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9.5l-4.7 1.9L12 16l-1.8-4.6L5.5 9.5l4.7-1.9z"></path><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"></path></svg>Suggest Review</button>
+</div>
+</sc-if>
+
+<sc-if value="{{showHint}}" hint-placeholder-val="{{ true }}">
+<div style="font-size: 13.5px; color: #4B5A70; text-align: center; line-height: 1.5; background: #F5F9FF; border-radius: 14px; padding: 12px 14px">Tap a star and we'll suggest a few reviews you can copy and post on Google.</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{isLoading}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="background: #FFFFFF; border: 1px solid #DCE6F5; border-radius: 24px; padding: 26px 22px; box-shadow: 0 1px 2px rgba(15,27,51,0.05), 0 18px 40px rgba(37,99,235,0.10); display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<div style="width: 58px; height: 58px; border-radius: 18px; background: {{accentSoft}}; color: {{accent}}; display: flex; align-items: center; justify-content: center">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: {{spin}}; transition: transform 0.6s ease"><path d="M12 3l1.8 4.6L18.5 9.5l-4.7 1.9L12 16l-1.8-4.6L5.5 9.5l4.7-1.9z"></path><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"></path></svg>
+</div>
+<div style="font-size: 18px; font-weight: 800">Writing review ideas for you…</div>
+<div style="font-size: 13.5px; color: #4B5A70">This takes just a few seconds</div>
+</div>
+<sc-for list="{{skeletons}}" as="sk" hint-placeholder-count="3">
+<div style="background: #FFFFFF; border: 1px solid #DCE6F5; border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 10px; opacity: {{pulse}}; transition: opacity 0.6s ease">
+<div style="height: 12px; width: 92%; border-radius: 6px; background: #E1EAF7"></div>
+<div style="height: 12px; width: 100%; border-radius: 6px; background: #E1EAF7"></div>
+<div style="height: 12px; width: 64%; border-radius: 6px; background: #E1EAF7"></div>
+<div style="height: 46px; width: 100%; border-radius: 14px; background: #EAF1FC; margin-top: 4px"></div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{isResults}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 0 4px">
+<div style="font-size: 21px; font-weight: 800">Pick a review you like</div>
+<div style="font-size: 13.5px; color: #4B5A70; line-height: 1.5">{{ratingNote}} Tap once to copy, then just paste it on Google. You can edit it there.</div>
+</div>
+<sc-for list="{{reviews}}" as="rv" hint-placeholder-count="3">
+<div style="background: #FFFFFF; border: 1px solid #DCE6F5; border-radius: 20px; padding: 18px; box-shadow: 0 1px 2px rgba(15,27,51,0.05), 0 10px 26px rgba(37,99,235,0.08); display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<div style="font-size: 12px; font-weight: 800; color: {{accentDark}}; letter-spacing: 0.5px">SUGGESTION {{rv.num}}</div>
+<div style="display: flex; align-items: center; gap: 5px; border: 1px solid #DCE6F5; border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 700; color: #33415A">
+<svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.85 5.9 6.45.85-4.75 4.45 1.2 6.4L12 17.3l-5.75 3.1 1.2-6.4L2.7 9.55l6.45-.85z" fill="#F5A623"></path></svg>Google Review</div>
+</div>
+<div style="font-size: 15px; line-height: 1.6; color: #0F1B33">{{rv.text}}</div>
+<sc-if value="{{rv.copied}}" hint-placeholder-val="{{ false }}">
+<button onClick="{{rv.copy}}" style="min-height: 48px; border-radius: 14px; border: 1.5px solid #9AD3B0; background: #EAF7EF; color: #14532D; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Copied — opening Google</button>
+</sc-if>
+<sc-if value="{{rv.notCopied}}" hint-placeholder-val="{{ true }}">
+<button onClick="{{rv.copy}}" style="min-height: 48px; border: none; border-radius: 14px; background: {{accent}}; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V6a2 2 0 0 1 2-2h9"></path></svg>Copy &amp; Post on Google</button>
+</sc-if>
+</div>
+</sc-for>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<button onClick="{{generate}}" style="min-height: 48px; border-radius: 14px; border: 1.5px solid {{accent}}; background: #FFFFFF; color: {{accentDark}}; font-family: inherit; font-size: 14px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"></path><path d="M4 3v5h5"></path><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"></path><path d="M20 21v-5h-5"></path></svg>Regenerate</button>
+<button onClick="{{backToRate}}" style="min-height: 48px; border-radius: 14px; border: 1.5px solid #D5DFEE; background: #FFFFFF; color: #33415A; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Change rating</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isError}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #DCE6F5; border-radius: 24px; padding: 30px 22px; box-shadow: 0 1px 2px rgba(15,27,51,0.05), 0 18px 40px rgba(37,99,235,0.10); display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<div style="width: 58px; height: 58px; border-radius: 18px; background: #FFF1E6; color: #B45309; display: flex; align-items: center; justify-content: center">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v5"></path><path d="M12 16.5v.5"></path><path d="M10.3 3.9L2.4 17.5A2 2 0 0 0 4.1 20.5h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
+</div>
+<div style="font-size: 19px; font-weight: 800">Couldn't create suggestions</div>
+<div style="font-size: 14px; color: #4B5A70; line-height: 1.5; max-width: 280px">Please check your internet connection and try again.</div>
+<button onClick="{{generate}}" style="margin-top: 10px; width: 100%; min-height: 52px; border: none; border-radius: 16px; background: {{accent}}; color: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 800; cursor: pointer">Try again</button>
+<button onClick="{{backToRate}}" style="width: 100%; min-height: 48px; border: none; border-radius: 14px; background: transparent; color: #33415A; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Go back</button>
+</div>
+</sc-if>
+
+</section>
+</main>
+
+<footer style="border-top: 1px solid #DCE6F5; background: #FFFFFF">
+<div style="max-width: 1080px; margin: 0 auto; box-sizing: border-box; padding: 16px 20px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12.5px; color: #4B5A70">
+<div>Suggestions are written by AI · edit freely before posting</div>
+<div>© [Clinic Name]</div>
+</div>
+</footer>
+
+<sc-if value="{{showToast}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: fixed; left: 50%; transform: translateX(-50%); bottom: 24px; width: calc(100% - 32px); max-width: 420px; box-sizing: border-box; background: #0F1B33; color: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; box-shadow: 0 14px 34px rgba(15,27,51,0.30)">
+<div style="width: 26px; height: 26px; border-radius: 999px; background: #22C55E; color: #0B2A16; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</div>Review copied! Just paste it on Google</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#2563EB","options":["#2563EB","#0284C7","#4F46E5","#1D4ED8"]},"start":{"editor":"enum","default":"landing","options":["landing","tags","loading","results","error"]},"simulateError":{"editor":"boolean","default":false},"$preview":{"width":1280,"height":960}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    var s = props.start || 'landing';
+    this.state = {
+      screen: s === 'landing' || s === 'tags' ? 'rate' : s,
+      rating: s === 'landing' ? 0 : 5,
+      tags: s === 'landing' ? [] : ['Doctor listened carefully', 'Clear explanation'],
+      lang: 'en',
+      copied: s === 'results' ? 0 : -1,
+      toast: s === 'results',
+      variant: 0,
+      tick: 0
+    };
+    this.timers = [];
+    this.pos = {
+      en: [
+        'Had a very good experience with Dr. [Doctor Name]. The doctor listened patiently and explained everything clearly. The staff were caring too.',
+        'Dr. [Doctor Name] is knowledgeable and approachable. The clinic is clean and well organised, and the waiting time was short.',
+        'Felt comfortable throughout my visit to Dr. [Doctor Name]. Clear advice, no rush, and a friendly team at the clinic.',
+        'Booking an appointment was easy and the visit went smoothly. Dr. [Doctor Name] took time to answer all my questions. Recommended.'
+      ],
+      hi: [
+        'डॉ. [Doctor Name] से मिलकर बहुत अच्छा लगा। उन्होंने ध्यान से सुना और सब कुछ साफ़-साफ़ समझाया। स्टाफ़ भी बहुत सहयोगी था।',
+        'डॉ. [Doctor Name] अनुभवी और सरल स्वभाव के हैं। क्लिनिक साफ़-सुथरा है और इंतज़ार भी कम करना पड़ा।',
+        'पूरी विज़िट के दौरान सहज महसूस हुआ। डॉ. [Doctor Name] ने बिना जल्दबाज़ी के सही सलाह दी।',
+        'अपॉइंटमेंट लेना आसान था और डॉ. [Doctor Name] ने सभी सवालों के जवाब दिए। ज़रूर सलाह देंगे।'
+      ],
+      hinglish: [
+        'Dr. [Doctor Name] se milkar bahut accha laga. Unhone dhyan se suna aur sab kuch clearly samjhaya. Staff bhi bahut caring tha.',
+        'Dr. [Doctor Name] experienced aur friendly hain. Clinic clean hai aur waiting time bhi kam tha.',
+        'Poori visit mein comfortable feel hua. Dr. [Doctor Name] ne bina jaldbazi ke sahi advice di.',
+        'Appointment lena easy tha aur Dr. [Doctor Name] ne saare sawaalon ke jawab diye. Zaroor recommend karenge.'
+      ]
+    };
+    this.mixed = {
+      en: [
+        'Dr. [Doctor Name] explained things well, but the waiting time at the clinic was quite long.',
+        'Decent consultation with Dr. [Doctor Name]. The appointment process could be a little smoother.',
+        'Overall an average visit. The doctor was helpful, though the clinic could manage time better.'
+      ],
+      hi: [
+        'डॉ. [Doctor Name] ने अच्छे से समझाया, लेकिन क्लिनिक में इंतज़ार काफ़ी लंबा था।',
+        'डॉ. [Doctor Name] के साथ परामर्श ठीक रहा। अपॉइंटमेंट की प्रक्रिया थोड़ी और आसान हो सकती है।',
+        'कुल मिलाकर औसत अनुभव। डॉक्टर मददगार थे, पर समय का प्रबंधन बेहतर हो सकता है।'
+      ],
+      hinglish: [
+        'Dr. [Doctor Name] ne accha samjhaya, lekin clinic mein wait kaafi lamba tha.',
+        'Dr. [Doctor Name] ke saath consultation theek raha. Appointment process thoda aur smooth ho sakta hai.',
+        'Overall average experience. Doctor helpful the, par time management better ho sakta hai.'
+      ]
+    };
+  }
+  componentDidMount() {
+    var self = this;
+    this.iv = setInterval(function () {
+      if (self.state.screen === 'loading') self.setState(function (st) { return { tick: st.tick + 1 }; });
+    }, 650);
+  }
+  componentWillUnmount() {
+    clearInterval(this.iv);
+    this.timers.forEach(function (t) { clearTimeout(t); });
+  }
+  later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
+  generate() {
+    var self = this;
+    this.setState({ screen: 'loading', copied: -1, toast: false });
+    this.later(function () {
+      var fail = self.props.simulateError ?? false;
+      self.setState(function (st) { return { screen: fail ? 'error' : 'results', variant: st.variant + 1 }; });
+    }, 1800);
+  }
+  copy(i, text) {
+    var self = this;
+    try { if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {}); } catch (e) {}
+    this.setState({ copied: i, toast: true });
+    this.later(function () { self.setState({ toast: false }); }, 2600);
+  }
+  renderVals() {
+    var self = this;
+    var st = this.state;
+    var accent = this.props.accent ?? '#2563EB';
+    var r = st.rating;
+    var labels = ['Tap a star to rate', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent!'];
+    var stars = [1, 2, 3, 4, 5].map(function (n) {
+      var on = n <= r;
+      return {
+        label: n + ' star' + (n > 1 ? 's' : ''),
+        fill: on ? '#F5A623' : 'none',
+        stroke: on ? '#F5A623' : '#AFC0D8',
+        scale: on && n === r ? 'scale(1.12)' : 'scale(1)',
+        pick: function () { self.setState({ rating: n }); }
+      };
+    });
+    var tagNames = ['Doctor listened carefully', 'Clear explanation', 'Caring staff', 'Short waiting time', 'Clean clinic', 'Easy appointment'];
+    var tagItems = tagNames.map(function (t) {
+      var on = st.tags.indexOf(t) !== -1;
+      return {
+        label: t, on: on, off: !on,
+        toggle: function () {
+          self.setState(function (s) {
+            var has = s.tags.indexOf(t) !== -1;
+            return { tags: has ? s.tags.filter(function (x) { return x !== t; }) : s.tags.concat([t]) };
+          });
+        }
+      };
+    });
+    var langs = [{ id: 'en', label: 'English' }, { id: 'hi', label: 'हिंदी' }, { id: 'hinglish', label: 'Hinglish' }].map(function (l) {
+      var on = st.lang === l.id;
+      return { label: l.label, on: on, off: !on, pick: function () { self.setState({ lang: l.id }); } };
+    });
+    var pool = (r > 0 && r <= 3 ? this.mixed : this.pos)[st.lang];
+    var off = st.variant % pool.length;
+    var reviews = [0, 1, 2].map(function (k) {
+      var text = pool[(off + k) % pool.length];
+      return {
+        num: k + 1, text: text,
+        copied: st.copied === k, notCopied: st.copied !== k,
+        copy: function () { self.copy(k, text); }
+      };
+    });
+    return {
+      accent: accent,
+      accentSoft: accent + '1A',
+      accentDark: '#1E3A8A',
+      steps: [
+        { n: 1, label: 'Rate your visit' },
+        { n: 2, label: 'Pick a suggested review' },
+        { n: 3, label: 'Paste & post on Google' }
+      ],
+      stars: stars,
+      ratingLabel: labels[r] || '',
+      isRate: st.screen === 'rate',
+      showTags: st.screen === 'rate' && r > 0,
+      showHint: st.screen === 'rate' && r === 0,
+      isLoading: st.screen === 'loading',
+      isResults: st.screen === 'results',
+      isError: st.screen === 'error',
+      showToast: st.toast,
+      tagItems: tagItems,
+      langs: langs,
+      reviews: reviews,
+      ratingNote: 'Based on your ' + (r || 5) + '-star rating.',
+      skeletons: [1, 2, 3],
+      pulse: st.tick % 2 === 0 ? 1 : 0.45,
+      spin: 'rotate(' + (st.tick * 45) + 'deg)',
+      generate: function () { self.generate(); },
+      backToRate: function () { self.setState({ screen: 'rate', copied: -1, toast: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
